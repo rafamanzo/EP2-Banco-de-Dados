@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tempo de Geração: Jun 11, 2011 as 11:09 AM
+-- Tempo de Geração: Jun 12, 2011 as 05:52 PM
 -- Versão do Servidor: 5.1.54
 -- Versão do PHP: 5.3.5-1ubuntu7.2
 
@@ -31,6 +31,7 @@ CREATE TABLE `artigo` (
   `autor` varchar(255) NOT NULL,
   `subtitulo` varchar(255) NOT NULL,
   `id_periodico` int(10) unsigned NOT NULL,
+  `disponivel_online` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id_periodico` (`id_periodico`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
@@ -50,7 +51,7 @@ CREATE TABLE `artigo` (
 CREATE TABLE `emprestimo` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `id_usuario` int(10) unsigned NOT NULL,
-  `id_exemplar` int(10) unsigned NOT NULL,
+  `id_livro` int(10) unsigned NOT NULL,
   `data_retirada` date NOT NULL,
   `data_devolucao` date NOT NULL,
   PRIMARY KEY (`id`)
@@ -58,8 +59,8 @@ CREATE TABLE `emprestimo` (
 
 --
 -- RELAÇÕES PARA A TABELA `emprestimo`:
---   `id_exemplar`
---       `exemplar` -> `id`
+--   `id_livro`
+--       `livro` -> `id`
 --   `id_usuario`
 --       `usuario` -> `id`
 --
@@ -141,15 +142,15 @@ CREATE TABLE `recadastro` (
 CREATE TABLE `reserva` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `id_usuario` int(10) unsigned NOT NULL,
-  `id_exemplar` int(10) unsigned NOT NULL,
+  `id_livro` int(10) unsigned NOT NULL,
   `data_retirada` date NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- RELAÇÕES PARA A TABELA `reserva`:
---   `id_exemplar`
---       `exemplar` -> `id`
+--   `id_livro`
+--       `livro` -> `id`
 --   `id_usuario`
 --       `usuario` -> `id`
 --
